@@ -8,5 +8,6 @@ module.exports = {
         EMAIL_REQUIRED: 'EMAIL Required!.',
         PASSWORD_REQUIRED: 'PASSWORD Required!.',
         NO_USER: 'NO USER DETECTED!.',
+        CANT_DELETE : "CAN`T DELETE THIS"
     }
 }

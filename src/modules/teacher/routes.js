@@ -24,4 +24,17 @@ router.post('/add-virtual-room', seguridad(), async (req, res, next) => {
     return resposes.success(req, res, { message: 'added correctly', insertId: createVirtualRoom.insertId }, 200)
 })
 
+router.delete('/delete-virtual-room/:id', seguridad(), async (req, res, next) => {
+    const virtual_room_id = req.params.id
+    const usuario_id = req.user.usuario_id
+    const checkVirtualRoom = await controller.deleteVirtualRoom(virtual_room_id, usuario_id)
+    
+    const response = checkVirtualRoom.error ? 
+    resposes.error(req, res, { message: checkVirtualRoom.error}, 200) :
+    resposes.success(req, res, { message: 'borrando', response: checkVirtualRoom }, 200)
+
+    return response
+})
+
+
 module.exports = router

@@ -1,4 +1,6 @@
 const db = require('../../DB/crud')
+const { err_messages } = require('../../utils/messages')
+
 
 const getAllRooms = (usuario_id) => {
     const table = 'aula_virtual'
@@ -16,7 +18,24 @@ const createVirtualRoom = (body) => {
 
     return db.insert(table, data)
 }
+
+
+const deleteVirtualRoom =async (id_room, user_id)=>{
+    const table = 'tcc.aula_virtual'
+
+    const virtual_room = await db.select(table, {aula_id:id_room})
+
+
+    if(virtual_room[0].usuario_id === user_id){
+        return await db.deleteWhereID(table, {aula_id:id_room})
+    }else{
+        return {error:err_messages.CANT_DELETE}
+    }
+
+    
+}
 module.exports = {
     createVirtualRoom,
-    getAllRooms
+    getAllRooms,
+    deleteVirtualRoom
 }

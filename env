@@ -1,7 +1,0 @@
-PORT=4000
-DB_HOST=localhost
-DB_USER=tcc_user
-DB_PASSWORD=''
-SECRET=''
-DB=tcc
-SALT_ROUND=10
